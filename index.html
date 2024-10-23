@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%; /* Ajustado para 100% */
+            height: 100%; /* Ajustado para 100% */
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            object-fit: cover; /* Mantém o vídeo cobrindo a tela */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            color: #fff;
+            z-index: 1;
+            padding: 20px;
+        }
+        .message-box {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin: 0;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #28a745; /* Cor do botão "sim" */
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838; /* Cor ao passar o mouse */
+        }
+        .sad-emoji {
+            font-size: 5em; /* Tamanho do emoji */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="video.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+    </div>
+    <div class="container">
+        <div class="message-box">
+            <h1 id="message">Tá prontinha?</h1>
+            <div id="buttonContainer">
+                <button id="yesButton">Sim</button>
+                <button id="noButton">Não</button>
+            </div>
+            <div id="sadEmojiContainer" style="display: none;">
+                <span class="sad-emoji">😢</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const message = document.getElementById('message');
+        const buttonContainer = document.getElementById('buttonContainer');
+        const sadEmojiContainer = document.getElementById('sadEmojiContainer');
+
+        yesButton.addEventListener('click', () => {
+            message.textContent = 'Tem certeza amor?';
+            yesButton.textContent = 'XIM';
+            noButton.textContent = 'NÃO (pff n clica aqui)';
+        });
+
+        noButton.addEventListener('click', () => {
+            message.style.display = 'none'; // Esconde o texto
+            buttonContainer.style.display = 'none'; // Esconde os botões
+            sadEmojiContainer.style.display = 'block'; // Mostra o emoji triste
+        });
+    </script>
+</body>
+</html>
